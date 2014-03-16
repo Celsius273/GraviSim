@@ -58,7 +58,7 @@ class planet:
             self.acc=[0,0]
             for p in plist:
                 if p.id != self.id: #applies to all objects without the same id
-                    g=1 #10^-1... tweak this value as appropriate
+                    g=0.4 #10^-1... tweak this value as appropriate
                     
                     r=pow(pow(p.pos[1]-self.pos[1], 2) + pow(p.pos[0]-self.pos[0], 2) ,0.5)
                     if r <= 1: #lower limit for proportionality
@@ -82,6 +82,9 @@ class planet:
         self.setvelo()
         
     def gen(self, plist, idt): #will generate debris, a lot of this is just tinkering with constants
+        
+        ##Idea: define constants here and comment on what they're used for, will expedite process of tinkering
+        
         for i in range (0, round(pow(self.size, 0.8))-1 ):
             plist.append( planet( [self.pos[0]+(random.randint(0,4*self.size)-2*self.size),self.pos[1]+(random.randint(0,4*self.size)-2*self.size)] , [ self.velo[0] + (-0.4+(0.8*random.random()))*self.velo[1] , self.velo[1] + (-0.4+(0.8*random.random()))*(-self.velo[0]) ], 1+random.randint(1, int(math.ceil(self.size/5.0))), self.density, idt+i+1))
         
