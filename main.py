@@ -1,7 +1,10 @@
-import pygame, sys,os, time, random, platform, math, planet
+import pygame, sys,os, time, random, platform, math, planet, interface, quadTree, function
 
-from planet import planet, star
+from planet import *
 from pygame.locals import * 
+from interface import *
+from quadTree import *
+from function import *
 from pygame.color import THECOLORS
 
 ## If you get the no available video device error, copy and paste the below code ##
@@ -96,7 +99,7 @@ try:
             idt+=1
         if mb == (0,0,0): #mouse release/idle
             if len(tplist)>=1:
-                tplist[0].fvelo((mpos[0]-hpos[0])/-50.0,(mpos[1]-hpos[1])/-50.0)
+                tplist[0].fvelo((mpos[0]-hpos[0])/-100.0,(mpos[1]-hpos[1])/-100.0)
                 #tplist[0].fvelo(5,5)
                 plist.append(tplist[0])
                 tplist.pop(0)
@@ -156,7 +159,7 @@ try:
         
                 
         tloop+=1 #Every frame, the counter for the frames elapsed goes up by 1
-        clock.tick(60) #60 fps
+        clock.tick(120) #60 fps
         
 finally:
     pygame.quit()  # Keep this IDLE friendly 
