@@ -18,8 +18,6 @@ def flip():
 def blit(image, x, y):
     screen.blit(image, (x,y))
     
-
-
 class planet:
     def __init__ (self, pos, velo, radius, density, i, cc=None):
         self.pos=pos
@@ -125,4 +123,4 @@ class star: #superheavy planets that won't move and have a LOT of mass
         self.color[2]=random.randint(0,255)
         
     def draw(self):
-        circle(self.color, function.round(self.pos[0]), function.round(self.pos[1]), self.size)
+        function.circle(self.color, function.round(self.pos[0]), function.round(self.pos[1]), self.size)

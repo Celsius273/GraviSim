@@ -27,34 +27,6 @@ test=pygame.display.get_driver()
 
 #fonts
 f1 = pygame.font.Font("LUCON.TTF", 10)
-
-#drawing functions
-def image_get(folder, image):
-    pygame.image.load(os.path.join(folder, image))
-def text(text, font, color,x,y):
-    text = font.render(text, True, (color[0],color[1],color[2]))
-    screen.blit(text, (x,y))
-def fill(color):
-    screen.fill(THECOLORS[color])
-def line(color, a, b, c, d,):
-    pygame.draw.line(screen, color, (a, b), (c, d))
-def circle(color, x, y, radius):
-    pygame.draw.circle(screen, color, (x, y), radius)
-def rect(color, a, b, c, d):
-    pygame.draw.rect(screen, color, (a, b, c-a, d-b))
-def flip():
-    pygame.display.flip()
-def blit(image, x, y):
-    screen.blit(image, (x,y))
-    
-def round(x):
-    if x-int(x) >= 0.5:
-        return int(math.ceil(x))
-    else:
-        return int(math.floor(x))
-
-def dist(a,b,c,d):
-    return pow( pow(c-a,2) + pow(d-b,2) , 0.5)
     
 tloop=0
 running= True
@@ -68,7 +40,8 @@ plist.append(planet([300, 100] , [1.581988897,1] , 12, 0.07, 2))
 
 plist.append(star([400, 300], 20, 0.2, 3, [255,160,0]))
 
-
+#static variables
+RED = (255,0,0)
 #boolean 0/1 as for whether the user can add a planet or not when the mouse is pressed
 add=1
 
@@ -76,9 +49,7 @@ add=1
 addmode=1
 
 rm=3 #random multiplier, you'll see what it does later =D
-
 idt=4 #id tag, will increment by 1 every time a new object is added
-
 hpos=[0,0] #if the mouse is dragged, this is the original drag point
 
 try:
@@ -140,22 +111,23 @@ try:
                 
         #anything under this line and above flip() is the drawing loop
         screen.fill(THECOLORS['black'])
-        text(str(hpos[0]),f1, (0,255,255), 0, 0)
-        text(str(hpos[1]),f1, (0,255,255), 0, 30)
+        function.text(str(hpos[0]),f1, (0,255,255), 0, 0)
+        function.text(str(hpos[1]),f1, (0,255,255), 0, 30)
         
         for p in plist:
             #p.draw()
             if p.size == 1:
-                circle(p.color, round(p.pos[0]), round(p.pos[1]), 2)
+                function.circle(p.color, round(p.pos[0]), round(p.pos[1]), 2)
             else:
-                circle(p.color, round(p.pos[0]), round(p.pos[1]), round(p.size))
+                function.circle(p.color, round(p.pos[0]), round(p.pos[1]), round(p.size))
         
         for p in tplist:
-            line((255,0,0),p.pos[0],p.pos[1],mpos[0],mpos[1])
-            circle(p.color, round(p.pos[0]), round(p.pos[1]), p.size)
             
-        rect( (55,55,55),0,600,800,760)
-        flip()
+            function.line(screen,p.pos[0],p.pos[1],mpos[0],mpos[1], RED)
+            function.circle(p.color, round(p.pos[0]), round(p.pos[1]), p.size)
+            
+        function.rect( (55,55,55),0,600,800,760)
+        function.flip()
         
                 
         tloop+=1 #Every frame, the counter for the frames elapsed goes up by 1

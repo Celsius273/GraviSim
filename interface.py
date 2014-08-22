@@ -3,24 +3,6 @@ from function import *
 from pygame.locals import * 
 from pygame.color import THECOLORS
 
-def getImage(folder, image):
-    pygame.image.load(os.path.join(folder, image))
-def text(text, font, color,x,y):
-    text = font.render(text, True, (color[0],color[1],color[2]))
-    screen.blit(text, (x,y))
-def fill(color):
-    screen.fill(THECOLORS[color])
-def line(color, a, b, c, d,):
-    pygame.draw.line(screen, color, (a, b), (c, d))
-def circle(color, x, y, radius):
-    pygame.draw.circle(screen, color, (x, y), radius)
-def rect(color, a, b, c, d):
-    pygame.draw.rect(screen, color, (a, b, c, d))
-def flip():
-    pygame.display.flip()
-def drawImage(image, x, y):
-    screen.blit(image, (x,y))
-
 def round(x):
     if x-int(x) >= 0.5:
         return int(math.ceil(x))
@@ -90,8 +72,9 @@ class selector:
         self.upButton = upButton
         self.downButton = downButton
         
-    def draw(self):
+    def draw(self, screen):
         
+        return None
         
             
 class button:
