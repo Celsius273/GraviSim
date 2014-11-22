@@ -11,7 +11,7 @@ from pygame.color import THECOLORS
 class quadTree:
     
     MAX_LEVELS = 7 #Static variables/parameters
-    MAX_OBJECTS = 10    
+    MAX_OBJECTS = 20    
     
     def __init__ (x, y, length, level):
         self.x=x
@@ -21,7 +21,5 @@ class quadTree:
         self.level = level
         
         self.nodes = [] #List of contained quadtrees
-        
-    def clear (
         
         
