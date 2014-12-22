@@ -6,27 +6,28 @@ from pygame.color import THECOLORS
 def getImage(folder, image):
     pygame.image.load(os.path.join(folder, image))
     
-def text(screen, x, y, text, font, color):
+def text(screen, x, y, text, color, font = None):
+    if (font == None):
+        font = pygame.font.Font("LUCON.TTF", 14)
     text = font.render(text, True, (color[0],color[1],color[2]))
     screen.blit(text, (x,y))
 
 def fill(screen, color):
     screen.fill(THECOLORS[color])
 
-def line(screen, a, b, c, d, color):
-    pygame.draw.line(screen, color, (a, b), (c, d))
+def line(screen, x1, y1, x2, y2, color):
+    pygame.draw.line(screen, color, (x1, y1), (x2, y2))
 
-def circle(screen, x, y, radius):
-    pygame.draw.circle(screen, color, (x, y), radius)
+def circle(screen, x, y, radius, color):
+    pygame.draw.circle(screen, color, ( round(x) , round(y) ), round(radius))
 
-def rect(screen, a, b, c, d, color):
-    pygame.draw.rect(screen, color, (a, b, c, d))
+def rect(screen, x, y, length, width, color):
+    pygame.draw.rect(screen, color, (x, y, length, width))
 
 def flip():
     pygame.display.flip()
 
 def drawImage(screen, x, y, image):
-    screen = pygame.display.get_surface()
     screen.blit(image, (x,y))
 
 def round(x):
@@ -55,8 +56,8 @@ def intersectRect(rect1, rect2):
         return True
     return False
 
-class Rect:
-    def __init__ (x, y, length, height = None):
+class box:
+    def __init__ (self, x, y, length, height = None):
         self.x = x
         self.y = y
         self.length = length
@@ -64,3 +65,7 @@ class Rect:
             self.height = length
         else:
             self.height = height
+
+    def setCoords(self, x, y):
+        self.x = x
+        self.y = y

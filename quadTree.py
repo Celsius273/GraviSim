@@ -22,6 +22,6 @@ class quadTree:
         
         self.nodes = [] #List of contained quadtrees
         
-    def clear (
+    #def clear (
         
         
